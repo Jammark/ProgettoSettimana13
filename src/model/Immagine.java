@@ -27,6 +27,7 @@ public class Immagine extends ElementoMultimediale implements Visibile {
 	}
 
 	public void diminuisciLuminosità() {
+		if (this.luminosità > 0)
 		this.luminosità--;
 	}
 }

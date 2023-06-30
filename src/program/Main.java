@@ -22,12 +22,16 @@ public class Main {
 		int input = 0;
 		do {
 			System.out.println("Inserire un valore da 1 a 5 o 0 per uscire.");
-			input = sc.nextInt();
-			if (input != 0) {
+			input = leggiNumero(sc);
+			if (input > 0 && input < 6) {
 				stampaElemento(lista[input - 1]);
+			} else if (input != 0) {
+				System.out.println("Valore non valido.");
+
 			}
 
 		} while (input != 0);
+		sc.close();
 
 	}
 
@@ -36,7 +40,15 @@ public class Main {
 		System.out.println("1 per Immagine");
 		System.out.println("2 per Audio");
 		System.out.println("3 per Video");
-		int scelta = sc.nextInt();
+		int scelta;
+		if (sc.hasNextInt()) {
+			scelta = sc.nextInt();
+		} else {
+			System.out.println("Inserire un numero intero.");
+			sc.next();
+			return leggiInput(sc);
+		}
+
 		sc.nextLine();
 		switch (scelta) {
 		case 1:
@@ -49,15 +61,37 @@ public class Main {
 			return leggiInput(sc);
 		}
 
+
+	}
+
+	public static int leggiNumero(Scanner sc) {
+		while (sc.hasNext()) {
+			if (sc.hasNextInt()) {
+				int valore = sc.nextInt();
+				if (valore > 0)
+					return valore;
+				else {
+					System.out.println("Inserire un numero intero positivo.");
+
+					continue;
+				}
+			} else {
+				System.out.println("Inserire un numero intero positivo.");
+				sc.next();
+				continue;
+			}
+
+		}
+		return 0;
 	}
 
 	public static ElementoMultimediale createAudio(Scanner sc) {
 		System.out.println("Inserire il titolo...");
 		String titolo = sc.nextLine();
 		System.out.println("Inserire durata...");
-		int durata = sc.nextInt();
+		int durata = leggiNumero(sc);
 		System.out.println("Inserire volume...");
-		int volume = sc.nextInt();
+		int volume = leggiNumero(sc);
 
 		sc.nextLine();
 
@@ -68,11 +102,11 @@ public class Main {
 		System.out.println("Inserire il titolo...");
 		String titolo = sc.nextLine();
 		System.out.println("Inserire durata...");
-		int durata = sc.nextInt();
+		int durata = leggiNumero(sc);
 		System.out.println("Inserire volume...");
-		int volume = sc.nextInt();
+		int volume = leggiNumero(sc);
 		System.out.println("Inserire luminosità...");
-		int luminosità = sc.nextInt();
+		int luminosità = leggiNumero(sc);
 
 		sc.nextLine();
 
@@ -84,7 +118,7 @@ public class Main {
 		String titolo = sc.nextLine();
 
 		System.out.println("Inserire luminosità...");
-		int luminosità = sc.nextInt();
+		int luminosità = leggiNumero(sc);
 
 		sc.nextLine();
 

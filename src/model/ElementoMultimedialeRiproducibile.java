@@ -30,6 +30,7 @@ public abstract class ElementoMultimedialeRiproducibile extends ElementoMultimed
 	}
 
 	public void abbassaVolume() {
+		if (this.volume > 0)
 		this.volume--;
 	}
 }

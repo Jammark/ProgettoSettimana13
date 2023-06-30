@@ -20,6 +20,7 @@ public class Video extends ElementoMultimedialeRiproducibile {
 	}
 
 	public void diminuisciLuminosità() {
+		if (this.luminosità > 0)
 		this.luminosità--;
 	}
 
